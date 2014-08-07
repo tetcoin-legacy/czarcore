@@ -4866,8 +4866,8 @@ ScriptInterpreter.prototype.isCanonicalSignature = function(sig) {
 
 module.exports = ScriptInterpreter;
 
-}).call(this,require("/Users/ematiu/devel/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),require("buffer").Buffer)
-},{"../config":"4itQ50","../util":181,"../util/log":"AdF7pF","./Key":"ALJ4PS","./Opcode":"Zm7/h9","./Script":"hQ0t76","/Users/ematiu/devel/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":107,"bignum":57,"buffer":91,"buffertools":"fugeBw"}],"./lib/ScriptInterpreter":[function(require,module,exports){
+}).call(this,require("/Users/mondo/devel/dogecore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),require("buffer").Buffer)
+},{"../config":"4itQ50","../util":181,"../util/log":"AdF7pF","./Key":"ALJ4PS","./Opcode":"Zm7/h9","./Script":"hQ0t76","/Users/mondo/devel/dogecore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":107,"bignum":57,"buffer":91,"buffertools":"fugeBw"}],"./lib/ScriptInterpreter":[function(require,module,exports){
 module.exports=require('Q/ZWXW');
 },{}],"./lib/Transaction":[function(require,module,exports){
 module.exports=require('LJhYtm');
@@ -7069,6 +7069,8 @@ var RootCerts = require('../common/RootCerts');
 PayPro.prototype.x509Sign = function(key) {
   var pki_type = this.get('pki_type');
   var pki_data = this.get('pki_data'); // contains one or more x509 certs
+  pki_data = PayPro.X509Certificates.decode(pki_data);
+  pki_data = pki_data.certificate;
   var type = pki_type.split('+')[1].toUpperCase();
   var buf = this.serializeForSig();
 
@@ -7107,6 +7109,8 @@ PayPro.prototype.x509Verify = function(key) {
   var sig = this.get('signature');
   var pki_type = this.get('pki_type');
   var pki_data = this.get('pki_data');
+  pki_data = PayPro.X509Certificates.decode(pki_data);
+  pki_data = pki_data.certificate;
   var buf = this.serializeForSig();
   var type = pki_type.split('+')[1].toUpperCase();
 
@@ -7541,7 +7545,7 @@ PayPro.prototype.makePayment = function(obj) {
 };
 
 PayPro.prototype.makePaymentACK = function(obj) {
-  this.messageType = 'Payment';
+  this.messageType = 'PaymentACK';
   this.message = new PayPro.PaymentACK();
   this.setObj(obj);
   return this;
@@ -11475,8 +11479,6 @@ sjcl.misc.cachedPbkdf2=function(a,b){var c=sjcl.misc.ca,d;b=b||{};d=b.iter||1E3;
 
 },{"crypto":95}],"./lib/sjcl":[function(require,module,exports){
 module.exports=require('oLMOpG');
-},{}],"./networks":[function(require,module,exports){
-module.exports=require('ULNIu2');
 },{}],"ULNIu2":[function(require,module,exports){
 (function (Buffer){
 var Put = require('bufferput');
@@ -11487,62 +11489,62 @@ var hex = function(hex) {
 
 exports.livenet = {
   name: 'livenet',
-  magic: hex('f9beb4d9'),
-  addressVersion: 0x00,
+  magic: hex('c0c0c0c0'),
+  addressVersion: 0x1E,
   privKeyVersion: 128,
   P2SHVersion: 5,
   hkeyPublicVersion: 0x0488b21e,
   hkeyPrivateVersion: 0x0488ade4,
   genesisBlock: {
-    hash: hex('6FE28C0AB6F1B372C1A6A246AE63F74F931E8365E15A089C68D6190000000000'),
-    merkle_root: hex('3BA3EDFD7A7B12B27AC72C3E67768F617FC81BC3888A51323A9FB8AA4B1E5E4A'),
+    hash: hex('9156352C1818B32E90C9E792EFD6A11A82FE7956A630F03BBEE236CEDAE3911A'),
+    merkle_root: hex('696AD20E2DD4365C7459B4A4A5AF743D5E92C6DA3229E6532CD605F6533F2A5B'),
     height: 0,
-    nonce: 2083236893,
+    nonce: 99943,
     version: 1,
     prev_hash: buffertools.fill(new Buffer(32), 0),
-    timestamp: 1231006505,
-    bits: 486604799,
+    timestamp: 1386325540,
+    bits: 504365040,
   },
   dnsSeeds: [
-    'seed.bitcoin.sipa.be',
-    'dnsseed.bluematt.me',
-    'dnsseed.bitcoin.dashjr.org',
-    'seed.bitcoinstats.com',
-    'seed.bitnodes.io',
-    'bitseed.xf2.org'
+    'seed.dogecoin.com',
+    'seed.mophides.com',
+    'seed.dglibrary.org',
+    'seed.dogechain.info'
   ],
-  defaultClientPort: 8333
+  defaultClientPort: 22556
 };
 
 exports.mainnet = exports.livenet;
 
 exports.testnet = {
   name: 'testnet',
-  magic: hex('0b110907'),
-  addressVersion: 0x6f,
+  magic: hex('fcc1b7dc'),
+  addressVersion: 0x71,
   privKeyVersion: 239,
   P2SHVersion: 196,
   hkeyPublicVersion: 0x043587cf,
   hkeyPrivateVersion: 0x04358394,
   genesisBlock: {
-    hash: hex('43497FD7F826957108F4A30FD9CEC3AEBA79972084E90EAD01EA330900000000'),
-    merkle_root: hex('3BA3EDFD7A7B12B27AC72C3E67768F617FC81BC3888A51323A9FB8AA4B1E5E4A'),
+    hash: hex('9E555073D0C4F36456DB8951F449704D544D2826D9AA60636B40374626780ABB'),
+    merkle_root: hex('696AD20E2DD4365C7459B4A4A5AF743D5E92C6DA3229E6532CD605F6533F2A5B'),
     height: 0,
-    nonce: 414098458,
+    nonce: 997879,
     version: 1,
     prev_hash: buffertools.fill(new Buffer(32), 0),
-    timestamp: 1296688602,
-    bits: 486604799,
+    timestamp: 1391503289,
+    bits: 504365040,
   },
   dnsSeeds: [
-    'testnet-seed.bitcoin.petertodd.org',
-    'testnet-seed.bluematt.me'
+    'testdoge-seed.lionservers.de',
+    'testdoge-seed-static.lionservers.de'
   ],
-  defaultClientPort: 18333
+  defaultClientPort: 44556
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":91,"bufferput":"aXRuS6","buffertools":"fugeBw"}],78:[function(require,module,exports){
+},{"buffer":91,"bufferput":"aXRuS6","buffertools":"fugeBw"}],"./networks":[function(require,module,exports){
+module.exports=require('ULNIu2');
+},{}],78:[function(require,module,exports){
 (function (process){
 /*global setImmediate: false, setTimeout: false, console: false */
 (function () {
@@ -12503,8 +12505,8 @@ exports.testnet = {
 
 }());
 
-}).call(this,require("/Users/ematiu/devel/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/Users/ematiu/devel/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":107}],79:[function(require,module,exports){
+}).call(this,require("/Users/mondo/devel/dogecore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"/Users/mondo/devel/dogecore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":107}],79:[function(require,module,exports){
 (function (Buffer){
 var Chainsaw = require('chainsaw');
 var EventEmitter = require('events').EventEmitter;
@@ -13083,8 +13085,8 @@ function upgradeChainsaw(saw) {
     };
 };
 
-}).call(this,require("/Users/ematiu/devel/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/Users/ematiu/devel/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":107,"events":100,"traverse":82}],82:[function(require,module,exports){
+}).call(this,require("/Users/mondo/devel/dogecore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"/Users/mondo/devel/dogecore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":107,"events":100,"traverse":82}],82:[function(require,module,exports){
 module.exports = Traverse;
 function Traverse (obj) {
     if (!(this instanceof Traverse)) return new Traverse(obj);
@@ -13570,8 +13572,8 @@ exports.getRoot = function getRoot (file) {
   }
 }
 
-}).call(this,require("/Users/ematiu/devel/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),"/node_modules/bindings/bindings.js")
-},{"/Users/ematiu/devel/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":107,"fs":87,"path":108}],84:[function(require,module,exports){
+}).call(this,require("/Users/mondo/devel/dogecore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),"/node_modules/bindings/bindings.js")
+},{"/Users/mondo/devel/dogecore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":107,"fs":87,"path":108}],84:[function(require,module,exports){
 // Utils
 
 function assert(val, msg) {
@@ -16571,8 +16573,8 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-}).call(this,require("/Users/ematiu/devel/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":89,"/Users/ematiu/devel/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":107,"inherits":106}],91:[function(require,module,exports){
+}).call(this,require("/Users/mondo/devel/dogecore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./support/isBuffer":89,"/Users/mondo/devel/dogecore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":107,"inherits":106}],91:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -19557,8 +19559,8 @@ var substr = 'ab'.substr(-1) === 'b'
     }
 ;
 
-}).call(this,require("/Users/ematiu/devel/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/Users/ematiu/devel/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":107}],109:[function(require,module,exports){
+}).call(this,require("/Users/mondo/devel/dogecore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"/Users/mondo/devel/dogecore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":107}],109:[function(require,module,exports){
 (function (global){
 /*! http://mths.be/punycode v1.2.4 by @mathias */
 ;(function(root) {
@@ -21485,8 +21487,8 @@ function indexOf (xs, x) {
   return -1;
 }
 
-}).call(this,require("/Users/ematiu/devel/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"./index.js":114,"/Users/ematiu/devel/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":107,"buffer":91,"events":100,"inherits":106,"process/browser.js":115,"string_decoder":120}],118:[function(require,module,exports){
+}).call(this,require("/Users/mondo/devel/dogecore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"./index.js":114,"/Users/mondo/devel/dogecore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":107,"buffer":91,"events":100,"inherits":106,"process/browser.js":115,"string_decoder":120}],118:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -22910,7 +22912,7 @@ function parseHost(host) {
 module.exports=require(89)
 },{}],123:[function(require,module,exports){
 module.exports=require(90)
-},{"./support/isBuffer":122,"/Users/ematiu/devel/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":107,"inherits":106}],"aXRuS6":[function(require,module,exports){
+},{"./support/isBuffer":122,"/Users/mondo/devel/dogecore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":107,"inherits":106}],"aXRuS6":[function(require,module,exports){
 (function (Buffer){
 function BufferPut () {
   this.words = [];
@@ -29030,27 +29032,14 @@ module.exports={
     "inherits": "^2.0.1",
     "uglify-js": "^2.4.13"
   },
+  "readme": "# Elliptic [![Build Status](https://secure.travis-ci.org/indutny/elliptic.png)](http://travis-ci.org/indutny/elliptic)\n\nFast elliptic-curve cryptography in a plain javascript implementation.\n\nNOTE: Please take a look at http://safecurves.cr.yp.to/ before choosing a curve\nfor your cryptography operations.\n\n## Incentive\n\nECC is much slower than regular RSA cryptography, the JS implementations are\neven more slower.\n\n## Benchmarks\n\n```bash\n$ node benchmarks/index.js\nBenchmarking: sign\nelliptic#sign x 262 ops/sec ±0.51% (177 runs sampled)\neccjs#sign x 55.91 ops/sec ±0.90% (144 runs sampled)\n------------------------\nFastest is elliptic#sign\n========================\nBenchmarking: verify\nelliptic#verify x 113 ops/sec ±0.50% (166 runs sampled)\neccjs#verify x 48.56 ops/sec ±0.36% (125 runs sampled)\n------------------------\nFastest is elliptic#verify\n========================\nBenchmarking: gen\nelliptic#gen x 294 ops/sec ±0.43% (176 runs sampled)\neccjs#gen x 62.25 ops/sec ±0.63% (129 runs sampled)\n------------------------\nFastest is elliptic#gen\n========================\nBenchmarking: ecdh\nelliptic#ecdh x 136 ops/sec ±0.85% (156 runs sampled)\n------------------------\nFastest is elliptic#ecdh\n========================\n```\n\n## API\n\n### ECDSA\n\n```javascript\nvar EC = require('elliptic').ec;\n\n// Create and initialize EC context\n// (better do it once and reuse it)\nvar ec = new EC('secp256k1');\n\n// Generate keys\nvar key = ec.genKeyPair();\n\n// Sign message (must be an array, or it'll be treated as a hex sequence)\nvar msg = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ];\nvar signature = key.sign(msg);\n\n// Export DER encoded signature in Array\nvar derSign = signature.toDER();\n\n// Verify signature\nconsole.log(key.verify(msg, derSign));\n```\n\n### ECDH\n\n```javascript\n// Generate keys\nvar key1 = ec.genKeyPair();\nvar key2 = ec.genKeyPair();\n\nvar shared1 = key1.derive(key2.getPublic());\nvar shared2 = key2.derive(key1.getPublic());\n\nconsole.log('Both shared secrets are BN instances');\nconsole.log(shared1.toString(16));\nconsole.log(shared2.toString(16));\n```\n\nNOTE: `.derive()` returns a [BN][1] instance.\n\n## Supported curves\n\nElliptic.js support following curve types:\n\n* Short Weierstrass\n* Montgomery\n* Edwards\n* Twisted Edwards\n\nFollowing curve 'presets' are embedded into the library:\n\n* `secp256k1`\n* `p192`\n* `p224`\n* `p256`\n* `curve25519`\n* `ed25519`\n\nNOTE: That `curve25519` could not be used for ECDSA, use `ed25519` instead.\n\n### Implementation details\n\nECDSA is using deterministic `k` value generation as per [RFC6979][0]. Most of\nthe curve operations are performed on non-affine coordinates (either projective\nor extended), various windowing techniques are used for different cases.\n\nAll operations are performed in reduction context using [bn.js][1], hashing is\nprovided by [hash.js][2]\n\n#### LICENSE\n\nThis software is licensed under the MIT License.\n\nCopyright Fedor Indutny, 2014.\n\nPermission is hereby granted, free of charge, to any person obtaining a\ncopy of this software and associated documentation files (the\n\"Software\"), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish,\ndistribute, sublicense, and/or sell copies of the Software, and to permit\npersons to whom the Software is furnished to do so, subject to the\nfollowing conditions:\n\nThe above copyright notice and this permission notice shall be included\nin all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS\nOR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\nMERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN\nNO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,\nDAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR\nOTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE\nUSE OR OTHER DEALINGS IN THE SOFTWARE.\n\n[0]: http://tools.ietf.org/html/rfc6979\n[1]: https://github.com/indutny/bn.js\n[2]: https://github.com/indutny/hash.js\n",
+  "readmeFilename": "README.md",
   "_id": "elliptic@0.15.7",
-  "_shasum": "33a3cfb88eeeeb04f0bbd06040f2cfc2fba93d2a",
-  "_from": "elliptic@0.15.7",
-  "_npmVersion": "1.4.9",
-  "_npmUser": {
-    "name": "indutny",
-    "email": "fedor@indutny.com"
-  },
-  "maintainers": [
-    {
-      "name": "indutny",
-      "email": "fedor@indutny.com"
-    }
-  ],
   "dist": {
-    "shasum": "33a3cfb88eeeeb04f0bbd06040f2cfc2fba93d2a",
-    "tarball": "http://registry.npmjs.org/elliptic/-/elliptic-0.15.7.tgz"
+    "shasum": "19b3eec55b3729776557d32d73cbad9ce0b3ebaa"
   },
-  "directories": {},
-  "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-0.15.7.tgz",
-  "readme": "ERROR: No README data found!"
+  "_from": "elliptic@=0.15.7",
+  "_resolved": "https://registry.npmjs.org/elliptic/-/elliptic-0.15.7.tgz"
 }
 
 },{}],150:[function(require,module,exports){
@@ -38369,8 +38358,8 @@ if (typeof module !== 'undefined' && "exports" in module) {
   module.exports = Step;
 }
 
-}).call(this,require("/Users/ematiu/devel/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
-},{"/Users/ematiu/devel/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":107}],"kytKTK":[function(require,module,exports){
+}).call(this,require("/Users/mondo/devel/dogecore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"))
+},{"/Users/mondo/devel/dogecore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":107}],"kytKTK":[function(require,module,exports){
 (function (Buffer){
 exports.patch = function(Buffers) {
   Buffers.prototype.skip = function (i) {
@@ -38899,8 +38888,6 @@ exports.curtime = function curtime() {
   return Math.round(Date.now() / 1000);
 }
 
-},{}],"./util/util":[function(require,module,exports){
-module.exports=require('ACyo5H');
 },{}],"ACyo5H":[function(require,module,exports){
 (function (process,Buffer){
 var crypto = require('crypto');
@@ -39393,5 +39380,7 @@ exports.BIT = 100;
 
 var MAX_TARGET = exports.MAX_TARGET = new Buffer('00000000FFFF0000000000000000000000000000000000000000000000000000', 'hex');
 
-}).call(this,require("/Users/ematiu/devel/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),require("buffer").Buffer)
-},{"../lib/sjcl":"oLMOpG","/Users/ematiu/devel/bitcore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":107,"bignum":57,"binary":79,"buffer":91,"bufferput":"aXRuS6","buffertools":"fugeBw","crypto":95,"hash.js":150}]},{},[])
+}).call(this,require("/Users/mondo/devel/dogecore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js"),require("buffer").Buffer)
+},{"../lib/sjcl":"oLMOpG","/Users/mondo/devel/dogecore/node_modules/browserify/node_modules/insert-module-globals/node_modules/process/browser.js":107,"bignum":57,"binary":79,"buffer":91,"bufferput":"aXRuS6","buffertools":"fugeBw","crypto":95,"hash.js":150}],"./util/util":[function(require,module,exports){
+module.exports=require('ACyo5H');
+},{}]},{},[])
