@@ -1084,7 +1084,7 @@ module.exports=require('KifRG4');
 var log = require('../util/log');
 
 var MAX_RECEIVE_BUFFER = 10000000;
-var PROTOCOL_VERSION = 70000;
+var PROTOCOL_VERSION = 70001;
 
 var Put = require('bufferput');
 var Buffers = require('buffers');
