@@ -1079,12 +1079,14 @@ module.exports = Bloom;
 
 },{}],"./lib/Bloom":[function(require,module,exports){
 module.exports=require('KifRG4');
+},{}],"./lib/Connection":[function(require,module,exports){
+module.exports=require('DB/p3X');
 },{}],"DB/p3X":[function(require,module,exports){
 (function (Buffer){
 var log = require('../util/log');
 
 var MAX_RECEIVE_BUFFER = 10000000;
-var PROTOCOL_VERSION = 70001;
+var PROTOCOL_VERSION = 70002;
 
 var Put = require('bufferput');
 var Buffers = require('buffers');
@@ -1647,9 +1649,7 @@ Connection.prototype.parseMessage = function(command, payload) {
 module.exports = Connection;
 
 }).call(this,require("buffer").Buffer)
-},{"../config":"4itQ50","../networks":"ULNIu2","../patches/Buffers.monkey":"kytKTK","../util":179,"../util/BinaryParser":"b3ZSD7","../util/log":"AdF7pF","./Block":"pJEQEB","./SecureRandom":"p4SiC2","./Transaction":"LJhYtm","buffer":89,"bufferput":"aXRuS6","buffers":"OBo3aV","buffertools":"fugeBw","events":98,"socks5-client":160,"util":121}],"./lib/Connection":[function(require,module,exports){
-module.exports=require('DB/p3X');
-},{}],"ez/meX":[function(require,module,exports){
+},{"../config":"4itQ50","../networks":"ULNIu2","../patches/Buffers.monkey":"kytKTK","../util":179,"../util/BinaryParser":"b3ZSD7","../util/log":"AdF7pF","./Block":"pJEQEB","./SecureRandom":"p4SiC2","./Transaction":"LJhYtm","buffer":89,"bufferput":"aXRuS6","buffers":"OBo3aV","buffertools":"fugeBw","events":98,"socks5-client":160,"util":121}],"ez/meX":[function(require,module,exports){
 exports.intFromCompact = function(c) {
   var bytes = ((c >>> 24) & 0xff) >>> 0;
   var v = ((c & 0xffffff) << (8 * (bytes - 3))) >>> 0;
