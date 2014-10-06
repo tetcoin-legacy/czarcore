@@ -1,7 +1,7 @@
 {
   "name": "bitcore",
   "description": "Bitcoin Library",
-  "version": "0.1.32",
+  "version": "0.1.36",
   "author": {
     "name": "Stephen Pair",
     "email": "stephen@bitpay.com"
@@ -84,7 +84,9 @@
     "async": "~0.2.10",
     "event-stream": "~3.1.5",
     "gulp-concat": "~2.2.0",
-    "gulp": "~3.8.2"
+    "gulp": "~3.8.2",
+    "preconditions": "^1.0.7",
+    "asn1.js": "0.4.1"
   },
   "testling": {
     "harness": "mocha-bdd",
@@ -102,6 +104,7 @@
   },
   "browser": {
     "bignum": "./lib/browser/Bignum.js",
+    "buffertools": "browserify-buffertools",
     "./lib/Key.js": "./lib/browser/Key.js",
     "./lib/Point.js": "./lib/browser/Point.js",
     "./lib/ECIES.js": "./lib/browser/ECIES.js",
@@ -111,5 +114,11 @@
   "license": "MIT",
   "engines": {
     "node": ">=0.10"
+  },
+  "devDependencies": {
+    "sinon": "^1.10.3",
+    "express": "4.6.1",
+    "request": "2.39.0",
+    "optimist": "0.6.1"
   }
 }

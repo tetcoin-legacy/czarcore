@@ -13,8 +13,10 @@ var puts = function(error, stdout, stderr) {
 var modules = [
   'lib/Address',
   'lib/Armory',
+  'lib/AuthMessage',
   'lib/Base58',
   'lib/HierarchicalKey',
+  'lib/BIP21',
   'lib/BIP39',
   'lib/BIP39WordlistEn',
   'lib/Block',
@@ -24,6 +26,7 @@ var modules = [
   'lib/ECIES',
   'lib/Electrum',
   'lib/Message',
+  'lib/NetworkMonitor',
   'lib/Opcode',
   'lib/PayPro',
   'lib/Peer',
@@ -71,14 +74,16 @@ var createBitcore = function(opts) {
   //modules included in "all" but not included in "main" bundle
   if (opts.includemain) {
     submodules = JSON.parse(JSON.stringify(modules));
+    submodules.splice(submodules.indexOf('lib/BIP21'), 1);
     submodules.splice(submodules.indexOf('lib/BIP39'), 1);
     submodules.splice(submodules.indexOf('lib/BIP39WordlistEn'), 1);
     submodules.splice(submodules.indexOf('lib/PayPro'), 1);
     submodules.splice(submodules.indexOf('lib/Connection'), 1);
     submodules.splice(submodules.indexOf('lib/Peer'), 1);
     submodules.splice(submodules.indexOf('lib/PeerManager'), 1);
+    submodules.splice(submodules.indexOf('lib/NetworkMonitor'), 1);
     var assert = require('assert');
-    assert(submodules.length == modules.length - 6);
+    assert(submodules.length == modules.length - 8);
   }
 
   if (opts.submodules) {
@@ -100,6 +105,9 @@ var createBitcore = function(opts) {
   });
   b.require(opts.dir + 'bufferput', {
     expose: 'bufferput'
+  });
+  b.require(opts.dir + 'events', {
+    expose: 'events'
   });
   b.require(opts.dir + 'buffers', {
     expose: 'buffers'
@@ -135,6 +143,9 @@ var createTestData = function() {
   var tb = browserify(bopts);
   tb.require('./test/testdata', {
     expose: 'testdata'
+  });
+  tb.require('sinon', {
+    expose: 'sinon'
   });
   tb.transform('brfs');
 

@@ -40,9 +40,6 @@ var sha512hmac = exports.sha512hmac = function(data, key) {
 };
 
 var ripe160 = exports.ripe160 = function(data) {
-  if (!Buffer.isBuffer(data)) {
-    throw new Error('arg should be a buffer');
-  }
   if (process.browser) {
     return new Buffer(hashjs.ripemd160().update(data).digest());
   }
@@ -272,7 +269,8 @@ var formatValue = exports.formatValue = function(valueBuffer) {
 
 var reFullVal = /^\s*(\d+)\.(\d+)/;
 var reFracVal = /^\s*\.(\d+)/;
-var reWholeVal = /^\s*(\d+)/;
+var reWholeVal = /^\s*(\d+)$/;
+var reSciNotation = /[+\-]?(?:0|[1-9]\d*)(?:\.\d*)?(?:[eE][+\-]?\d+)?/;
 
 function padFrac(frac) {
   frac = frac.substr(0, 8); //truncate to 8 decimal places
@@ -297,17 +295,25 @@ exports.parseValue = function parseValue(valueStr) {
   if (typeof valueStr !== 'string')
     valueStr = valueStr.toString();
 
-  var res = valueStr.match(reFullVal);
-  if (res)
-    return parseFullValue(res);
-
+  var res;
   res = valueStr.match(reFracVal);
   if (res)
     return parseFracValue(res);
 
+  res = valueStr.match(reSciNotation);
+  if (res) {
+    var f = parseFloat(res[0]);
+    valueStr = f.toFixed(8).toString();
+  }
+
+  res = valueStr.match(reFullVal);
+  if (res)
+    return parseFullValue(res);
+
   res = valueStr.match(reWholeVal);
   if (res)
     return parseWholeValue(res);
+
 
   return undefined;
 };
