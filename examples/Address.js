@@ -7,9 +7,9 @@ var run = function() {
   var Address = bitcore.Address;
 
   var addrs = [
-    '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa',
-    '1A1zP1eP5QGefi2DMPTfTL5SLmv7Dixxxx',
-    'A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa',
+    'D9veVVVjHnT59FGHTSzEenM8WxxPkUcQBT',
+    'D9veVVVjHnT59FGHTSzEenM8WxxPkxxxxx',
+    'A9veVVVjHnT59FGHTSzEenM8WxxPkUcQBT',
     '1600 Pennsylvania Ave NW',
   ].map(function(addr) {
     return new Address(addr);

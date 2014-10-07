@@ -134,8 +134,8 @@ describe('Transaction', function() {
   });
 
   describe('#send and receiving addresses', function() {
-    var a1 = 'n1pKARYYUnZwxBuGj3y7WqVDu6VLN7n971';
-    var a2 = 'mtxYYJXZJmQc2iJRHQ4RZkfxU5K7TE2qMJ';
+    var a1 = 'nieKVkELvNX3qrBfRuJfTjz1MmZHj73svx';
+    var a2 = 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq';
     var utxos = [{
       address: a1,
       txid: '2ac165fa7a3a2b535d106a0041c7568d03b531e58aeccdd3199d7289ab12cfc1',
@@ -151,8 +151,8 @@ describe('Transaction', function() {
       amount: 0.5001,
       confirmations: 200
     }];
-    
-    var destAddress = 'myuAQcCc1REUgXGsCTiYhZvPPc3XxZ36G1';
+
+    var destAddress = 'ndLU22tCxkiKATZjLSyWjiP7K7SRPZb1JD';
     var outs = [{
       address: destAddress,
       amount: 1.0
@@ -160,8 +160,8 @@ describe('Transaction', function() {
     var txb = new TransactionBuilder()
       .setUnspent(utxos)
       .setOutputs(outs)
-      .sign(['cVBtNonMyTydnS3NnZyipbduXo9KZfF1aUZ3uQHcvJB6UARZbiWG',
-          'cRVF68hhZp1PUQCdjr2k6aVYb2cn6uabbySDPBizAJ3PXF7vDXTL']);
+      .sign(['cg4jFrs7MbHs3BPgAB2CFdAFqZyc4zPiwYXgv6tZgzxQUon3SHty',
+          'cgaBdvyUoCBUQ9UrmoXmUpHCZD9P8imGZ3czvGJptarXt1mWuYoE']);
     var tx = txb.build();
 
     it('should find receiving addresses', function() {

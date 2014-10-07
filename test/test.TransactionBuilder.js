@@ -127,7 +127,7 @@ describe('TransactionBuilder', function() {
   var getBuilder2 = function(fee) {
     var opts = {
       remainderOut: {
-        address: 'mwZabyZXg8JzUtFX1pkGygsMJjnuqiNhgd'
+        address: 'nieKVkELvNX3qrBfRuJfTjz1MmZHj73svx'
       },
       spendUnconfirmed: true,
     };
@@ -135,7 +135,7 @@ describe('TransactionBuilder', function() {
     if (fee) opts.fee = fee;
 
     var outs = [{
-      address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+      address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
       amount: 0.08
     }];
 
@@ -148,14 +148,14 @@ describe('TransactionBuilder', function() {
   var getBuilderDust = function() {
     var opts = {
       remainderOut: {
-        address: 'mwZabyZXg8JzUtFX1pkGygsMJjnuqiNhgd'
+        address: 'nieKVkELvNX3qrBfRuJfTjz1MmZHj73svx'
       },
       spendUnconfirmed: true,
     };
 
     var outs = [{
-      address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
-      amount: 3.27585303, 
+      address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
+      amount: 3.27585303,
     }];
 
     return new TransactionBuilder(opts)
@@ -179,12 +179,12 @@ describe('TransactionBuilder', function() {
 
     var opts = {
       remainderOut: {
-        address: 'mwZabyZXg8JzUtFX1pkGygsMJjnuqiNhgd'
+        address: 'nieKVkELvNX3qrBfRuJfTjz1MmZHj73svx'
       },
       spendUnconfirmed: true,
     };
     var outs = [{
-      address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+      address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
       amount: 80
     }];
 
@@ -195,7 +195,7 @@ describe('TransactionBuilder', function() {
     }).should.throw();
 
     var outs2 = [{
-      address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+      address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
       amount: 0.5
     }];
 
@@ -259,7 +259,7 @@ describe('TransactionBuilder', function() {
   it('should create same output as bitcoind createrawtransaction ', function() {
     var tx = getBuilder2().build();
 
-    // string output generated from: bitcoind createrawtransaction '[{"txid": "2ac165fa7a3a2b535d106a0041c7568d03b531e58aeccdd3199d7289ab12cfc1","vout":1},{"txid":"2ac165fa7a3a2b535d106a0041c7568d03b531e58aeccdd3199d7289ab12cfc2","vout":0}  ]' '{"mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE":0.08,"mwZabyZXg8JzUtFX1pkGygsMJjnuqiNhgd":0.0299}'
+    // string output generated from: bitcoind createrawtransaction '[{"txid": "2ac165fa7a3a2b535d106a0041c7568d03b531e58aeccdd3199d7289ab12cfc1","vout":1},{"txid":"2ac165fa7a3a2b535d106a0041c7568d03b531e58aeccdd3199d7289ab12cfc2","vout":0}  ]' '{"ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq":0.08,"nieKVkELvNX3qrBfRuJfTjz1MmZHj73svx":0.0299}'
     tx.serialize().toString('hex').should.equal('0100000002c1cf12ab89729d19d3cdec8ae531b5038d56c741006a105d532b3a7afa65c12a0100000000ffffffffc2cf12ab89729d19d3cdec8ae531b5038d56c741006a105d532b3a7afa65c12a0000000000ffffffff0200127a00000000001976a914774e603bafb717bd3f070e68bbcccfd907c77d1388acb09f2d00000000001976a914b00127584485a7cff0949ef0f6bc5575f06ce00d88ac00000000');
 
   });
@@ -269,7 +269,7 @@ describe('TransactionBuilder', function() {
     //no remainder
     var tx = getBuilder2(0.03).build();
 
-    // string output generated from: bitcoind createrawtransaction '[{"txid": "2ac165fa7a3a2b535d106a0041c7568d03b531e58aeccdd3199d7289ab12cfc1","vout":1},{"txid":"2ac165fa7a3a2b535d106a0041c7568d03b531e58aeccdd3199d7289ab12cfc2","vout":0}  ]' '{"mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE":0.08}'
+    // string output generated from: bitcoind createrawtransaction '[{"txid": "2ac165fa7a3a2b535d106a0041c7568d03b531e58aeccdd3199d7289ab12cfc1","vout":1},{"txid":"2ac165fa7a3a2b535d106a0041c7568d03b531e58aeccdd3199d7289ab12cfc2","vout":0}  ]' '{"ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq":0.08}'
     //
     tx.serialize().toString('hex').should.equal('0100000002c1cf12ab89729d19d3cdec8ae531b5038d56c741006a105d532b3a7afa65c12a0100000000ffffffffc2cf12ab89729d19d3cdec8ae531b5038d56c741006a105d532b3a7afa65c12a0000000000ffffffff0100127a00000000001976a914774e603bafb717bd3f070e68bbcccfd907c77d1388ac00000000');
   });
@@ -280,14 +280,14 @@ describe('TransactionBuilder', function() {
 
     var opts = {
       remainderOut: {
-        address: 'mwZabyZXg8JzUtFX1pkGygsMJjnuqiNhgd'
+        address: 'nieKVkELvNX3qrBfRuJfTjz1MmZHj73svx'
       },
       spendUnconfirmed: true,
       signhash: signhash,
     };
 
     var outs = outs || [{
-      address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+      address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
       amount: 0.08
     }];
 
@@ -321,7 +321,7 @@ describe('TransactionBuilder', function() {
 
   it('should sign a tx (case 2)', function(done) {
     var b = getBuilder3([{
-        address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+        address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
         amount: 16
       }])
       .sign(testdata.dataUnspentSign.keyStrings);
@@ -346,7 +346,7 @@ describe('TransactionBuilder', function() {
   it('should sign an incomplete tx', function() {
     var keys = ['cNpW8B7XPAzCdRR9RBWxZeveSNy3meXgHD8GuhcqUyDuy8ptCDzJ'];
     var outs = [{
-      address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+      address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
       amount: 0.08
     }];
 
@@ -367,7 +367,7 @@ describe('TransactionBuilder', function() {
   it('should sign a tx in multiple steps (case1)', function(done) {
 
     var b = getBuilder3([{
-      address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+      address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
       amount: 16
     }]);
 
@@ -398,7 +398,7 @@ describe('TransactionBuilder', function() {
 
   it('#sign should sign a tx in multiple steps (case2)', function(done) {
     var b = getBuilder3([{
-      address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+      address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
       amount: 16
     }]);
 
@@ -433,7 +433,7 @@ describe('TransactionBuilder', function() {
 
   it('#sign should sign a tx in multiple steps (case2) / diff order', function(done) {
     var b = getBuilder3([{
-      address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+      address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
       amount: 16
     }]);
 
@@ -476,7 +476,7 @@ describe('TransactionBuilder', function() {
     var N = 101;
     for (var i = 0; i < N; i++) {
       outs.push({
-        address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+        address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
         amount: 0.01
       });
     }
@@ -511,7 +511,7 @@ describe('TransactionBuilder', function() {
     var N = 100;
     for (var i = 0; i < N; i++) {
       outs.push({
-        address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+        address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
         amount: 0.01
       });
     }
@@ -545,11 +545,11 @@ describe('TransactionBuilder', function() {
   it('should sign a p2pubkey tx', function(done) {
     var opts = {
       remainderOut: {
-        address: 'mwZabyZXg8JzUtFX1pkGygsMJjnuqiNhgd'
+        address: 'nieKVkELvNX3qrBfRuJfTjz1MmZHj73svx'
       },
     };
     var outs = outs || [{
-      address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+      address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
       amount: 0.08
     }];
 
@@ -580,11 +580,11 @@ describe('TransactionBuilder', function() {
   it('should sign a multisig tx', function(done) {
     var opts = {
       remainderOut: {
-        address: 'mwZabyZXg8JzUtFX1pkGygsMJjnuqiNhgd'
+        address: 'nieKVkELvNX3qrBfRuJfTjz1MmZHj73svx'
       },
     };
     var outs = outs || [{
-      address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+      address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
       amount: 0.08
     }];
     var b = new TransactionBuilder(opts)
@@ -613,11 +613,11 @@ describe('TransactionBuilder', function() {
   it('should sign a multisig tx in steps (3-5)', function(done) {
     var opts = {
       remainderOut: {
-        address: 'mwZabyZXg8JzUtFX1pkGygsMJjnuqiNhgd'
+        address: 'nieKVkELvNX3qrBfRuJfTjz1MmZHj73svx'
       },
     };
     var outs = outs || [{
-      address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+      address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
       amount: 0.08
     }];
     var b = new TransactionBuilder(opts)
@@ -656,11 +656,11 @@ describe('TransactionBuilder', function() {
   it('should count multisig signs (3-5)', function() {
     var opts = {
       remainderOut: {
-        address: 'mwZabyZXg8JzUtFX1pkGygsMJjnuqiNhgd'
+        address: 'nieKVkELvNX3qrBfRuJfTjz1MmZHj73svx'
       },
     };
     var outs = outs || [{
-      address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+      address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
       amount: 0.08
     }];
     var b = new TransactionBuilder(opts)
@@ -696,11 +696,11 @@ describe('TransactionBuilder', function() {
   it('should avoid siging with the same key twice multisig signs (3-5)', function(done) {
     var opts = {
       remainderOut: {
-        address: 'mwZabyZXg8JzUtFX1pkGygsMJjnuqiNhgd'
+        address: 'nieKVkELvNX3qrBfRuJfTjz1MmZHj73svx'
       },
     };
     var outs = outs || [{
-      address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+      address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
       amount: 0.08
     }];
     var b = new TransactionBuilder(opts)
@@ -772,7 +772,7 @@ describe('TransactionBuilder', function() {
     var network = 'testnet';
     opts = opts || {};
     opts.remainderOut = opts.remainderOut || {
-      address: 'mwZabyZXg8JzUtFX1pkGygsMJjnuqiNhgd'
+      address: 'nieKVkELvNX3qrBfRuJfTjz1MmZHj73svx'
     };
 
     var data = getInfoForP2sh();
@@ -886,7 +886,7 @@ describe('TransactionBuilder', function() {
     var network = 'testnet';
     var opts = {
       remainderOut: {
-        address: 'mwZabyZXg8JzUtFX1pkGygsMJjnuqiNhgd'
+        address: 'nieKVkELvNX3qrBfRuJfTjz1MmZHj73svx'
       },
     };
     // p2hash/ p2sh
@@ -899,7 +899,7 @@ describe('TransactionBuilder', function() {
     //hash: de09d4a9c7e53e08043efc74d14490dbcf03b0ba
     //
     var outs = outs || [{
-      address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+      address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
       amount: 0.08
     }];
     //info.scriptBufHex,
@@ -1033,7 +1033,7 @@ describe('TransactionBuilder', function() {
   describe('#merge', function() {
     it('with self', function() {
       var b = getBuilder3([{
-          address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+          address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
           amount: 16
         }])
         .sign(testdata.dataUnspentSign.keyStrings);
@@ -1048,14 +1048,14 @@ describe('TransactionBuilder', function() {
 
     it('#merge simple', function() {
       var b = getBuilder3([{
-          address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+          address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
           amount: 16
         }])
         .sign(testdata.dataUnspentSign.keyStrings);
 
       // merge simple
       var b2 = getBuilder3([{
-        address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+        address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
         amount: 16
       }]);
       b2.isFullySigned().should.equal(false);
@@ -1070,14 +1070,14 @@ describe('TransactionBuilder', function() {
 
 
     var b = getBuilder3([{
-      address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+      address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
       amount: 16
     }]);
 
     it('should check amount', function() {
       // bad amount
       var b2 = getBuilder3([{
-        address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+        address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
         amount: 15
       }]);
       (function() {
@@ -1099,13 +1099,13 @@ describe('TransactionBuilder', function() {
     it('should check signhash in p2pubkeyhash', function() {
       // bad amount
       var b = getBuilder3([{
-        address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+        address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
         amount: 15
       }]);
       b.sign(testdata.dataUnspentSign.keyStrings);
 
       var b2 = getBuilder3([{
-        address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+        address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
         amount: 15
       }], bitcore.Transaction.SIGHASH_NONE);
       b2.sign(testdata.dataUnspentSign.keyStrings);
@@ -1117,16 +1117,16 @@ describe('TransactionBuilder', function() {
 
 
     it('should merge signed signed txs', function() {
-      // same signature 
+      // same signature
       //  -> keep first signature
       var b = getBuilder3([{
-          address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+          address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
           amount: 16
         }])
         .sign(testdata.dataUnspentSign.keyStrings);
       // merge simple
       var b2 = getBuilder3([{
-          address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE',
+          address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq',
           amount: 16
         }])
         .sign(testdata.dataUnspentSign.keyStrings);
@@ -1248,7 +1248,7 @@ describe('TransactionBuilder', function() {
 
       var b2 = getP2shBuilder(1, {
         remainderOut: {
-          address: 'mrPnbY1yKDBsdgbHbS7kJ8GVm8F66hWHLE'
+          address: 'ncDY8UK8E1wAGFqrrRNVTGUG3NnF2g9bFq'
         }
       });
       b2.sign(k2);
