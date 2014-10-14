@@ -7,7 +7,7 @@ var hex = function(hex) {
 exports.livenet = {
   name: 'livenet',
   magic: hex('637a6172'),
-  addressVersion: 0x00,
+  addressVersion: 0x0f,
   privKeyVersion: 128,
   P2SHVersion: 5,
   hkeyPublicVersion: 0x0488b21e,
