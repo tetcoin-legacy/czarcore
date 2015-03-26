@@ -43,7 +43,7 @@
   "main": "bitcore.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bitpay/bitcore.git"
+    "url": "https://github.com/czarcoin/czarcore.git"
   },
   "scripts": {
     "install": "node-gyp rebuild",
