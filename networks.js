@@ -4,30 +4,31 @@ var hex = function(hex) {
   return new Buffer(hex, 'hex');
 };
 
-/* rememeber hash is backwards */
-/* Livenet: 26386e3d1dfe042576122eef381d662551f33d68eb29e3a3fb5fd0cd5f25788e */
-/* Testnet: bb43407716677ded9c2c32cf82ecb3c26b2d24a552dbcb4d53257a9f4b32178a */
+/* rememeber hash is backwards merkle is not */
+/* Livenet: 0x7da63dfb7ef42f57bb03eefed301d380377b5097191f915b89c4bd37a30f8379 */
+/* Testnet: 0x4480e554e3590c558f34d047e7ee71c6c80c628ba86e18f898759b962e94b8fb */
 exports.livenet = {
   name: 'livenet',
-  magic: hex('637a6172'),
+  magic: hex('437a6172'),
   addressVersion: 0xf,
   privKeyVersion: 128,
   P2SHVersion: 5,
   hkeyPublicVersion: 0x0488b21e,
   hkeyPrivateVersion: 0x0488ade4,
   genesisBlock: {
-    hash: hex('8e78255fcdd05ffba3e329eb683df35125661d38ef2e12762504fe1d3d6e3826'),
-    merkle_root: hex('adc2a5fbf9b0d5ab9b34fadc992d0d3666907743147b4db694b4218cee5eda13'),
+    hash: hex('79830fa337bdc4895b911f1997507b3790d301d3feee03bb572ff47efb3da67d'),
+    merkle_root: hex('61fcbca2949c1b15a29cbca8a3537fbc71c82f0d412a8fc2bbee2bc32f0d2077'),
     height: 0,
-    nonce: 2084732958,
+    nonce: 2090109717,
     version: 1,
     prev_hash: buffertools.fill(new Buffer(32), 0),
-    timestamp: 1413169227,
+    timestamp: 1519592266,
     bits: 486604799,
   },
   dnsSeeds: [
-    'czarcoin.co',
-    'czarcoin.com'
+    'seed.czarcoin.com',
+    'a.seed.czarcoin.com',
+    'b.seed.czarcoin.com'
   ],
   defaultClientPort: 8816
 };
@@ -43,13 +44,13 @@ exports.testnet = {
   hkeyPublicVersion: 0x043587cf,
   hkeyPrivateVersion: 0x04358394,
   genesisBlock: {
-    hash: hex('8a17324b9f7a25534dcbdb52a5242d6bc2b3ec82cf322c9ced7d6716774043bb'),
-    merkle_root: hex('adc2a5fbf9b0d5ab9b34fadc992d0d3666907743147b4db694b4218cee5eda13'),
+    hash: hex('fbb8942e969b7598f8186ea88b620cc8c671eee747d0348f550c59e354e58044'),
+    merkle_root: hex('61fcbca2949c1b15a29cbca8a3537fbc71c82f0d412a8fc2bbee2bc32f0d2077'),
     height: 0,
-    nonce: 386799647,
+    nonce: 1519742653,
     version: 1,
     prev_hash: buffertools.fill(new Buffer(32), 0),
-    timestamp: 1413169260,
+    timestamp: 1519592266,
     bits: 486604799,
   },
   dnsSeeds: [

@@ -138,5 +138,3 @@ And then open coverage/lcov-report/index.html in your browser.
 **Code released under [the MIT license](https://github.com/bitpay/bitcore/blob/master/LICENSE).**
 
 Copyright 2013-2014 BitPay, Inc. Bitcore is a trademark maintained by BitPay, Inc.
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/bitpay/bitcore/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
